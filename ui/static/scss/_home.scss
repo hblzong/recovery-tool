@@ -1,0 +1,254 @@
+.home {
+  position: relative;
+  font-family: "Outfit";
+  padding-bottom: px2rem(104px);
+  .title {
+    padding: px2rem(21px) 0;
+    font-size: px2rem(52px);
+    font-weight: 500;
+    line-height: px2rem(68px);
+    letter-spacing: 0em;
+    text-align: center;
+    color: #000000;
+  }
+  .lang {
+    position: absolute;
+    top: px2rem(33px);
+    left: px2rem(1500px);
+    .box {
+      min-width: px2rem(95px);
+      height: px2rem(44px);
+      padding: px2rem(11px) px2rem(12px);
+      border-radius: px2rem(22px);
+      border: 1px solid #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      .img1 {
+        display: block;
+        width: px2rem(22px);
+        height: px2rem(22px);
+      }
+      span {
+        display: block;
+        padding-left: px2rem(4px);
+        font-size: px2rem(16px);
+        font-weight: 500;
+        letter-spacing: 0px;
+        text-align: left;
+        color: #6b7280;
+      }
+      .img2 {
+        display: block;
+        width: px2rem(14px);
+        height: px2rem(14px);
+        margin-left: px2rem(12px);
+      }
+    }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: px2rem(-16px);
+      padding: px2rem(16px);
+      padding-bottom: 0;
+      z-index: 2;
+      .list {
+        width: px2rem(224px);
+        padding: px2rem(12px);
+        border-radius: px2rem(8px);
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        .li {
+          padding: px2rem(12px);
+          font-size: px2rem(18px);
+          font-weight: 500;
+          letter-spacing: 0px;
+          text-align: left;
+          border-radius: px2rem(8px);
+          cursor: pointer;
+          &:nth-of-type(1) {
+            margin-bottom: px2rem(16px);
+          }
+        }
+        .active {
+          position: relative;
+          background: #f3f4f6;
+          &::before {
+            content: "";
+            position: absolute;
+            right: px2rem(17px);
+            top: 50%;
+            transform: translateY(-50%);
+            width: px2rem(8px);
+            height: px2rem(8px);
+            background: #9700e9;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+  .main {
+    margin: 0 px2rem(300px);
+    border-top: 1px solid #eaeaea;
+    .derivation {
+      padding-top: px2rem(40px);
+      font-size: px2rem(40px);
+      font-weight: 400;
+      line-height: px2rem(52px);
+      letter-spacing: 0em;
+      text-align: left;
+      color: #000000;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      margin-top: px2rem(30px);
+      .name {
+        min-width: px2rem(150px);
+        width: px2rem(150px);
+        font-size: px2rem(20px);
+        font-weight: 500;
+        line-height: px2rem(24px);
+        letter-spacing: 0em;
+        text-align: left;
+        color: #000000;
+      }
+      .info {
+        display: flex;
+        align-items: center;
+        .tx {
+          position: relative;
+          border: 1px solid #e5e7eb;
+          margin-right: px2rem(10px);
+          width: px2rem(355px);
+          height: px2rem(48px);
+          line-height: px2rem(48px);
+          border-radius: px2rem(8px);
+          padding-left: px2rem(48px);
+          font-size: px2rem(16px);
+          font-weight: 500;
+          letter-spacing: 0em;
+          cursor: pointer;
+          &::before {
+            content: "";
+            position: absolute;
+            left: px2rem(16px);
+            top: 50%;
+            transform: translateY(-50%);
+            width: px2rem(16px);
+            height: px2rem(16px);
+            border: 1px solid #e5e7eb;
+            border-radius: 99px;
+          }
+        }
+        .active {
+          &::before {
+            content: "";
+            position: absolute;
+            left: px2rem(16px);
+            top: 50%;
+            transform: translateY(-50%);
+            width: px2rem(16px);
+            height: px2rem(16px);
+            border: 2px solid #9700e9;
+            border-radius: 99px;
+          }
+        }
+      }
+      .metadata,
+      .wallet,
+      input {
+        width: px2rem(1158px);
+        height: px2rem(84px);
+        padding: px2rem(16px);
+        border-radius: px2rem(8px);
+        border: 1px solid #e5e7eb;
+        font-size: px2rem(16px);
+      }
+      .wallet {
+        height: px2rem(48px);
+      }
+      input {
+        height: px2rem(52px);
+      }
+      .grey {
+        background: #f3f4f6;
+      }
+      textarea::placeholder,
+      input::placeholder {
+        font-size: px2rem(16px);
+        font-weight: 400;
+        line-height: px2rem(20px);
+        letter-spacing: 0em;
+        text-align: left;
+        color: #6b7280;
+      }
+    }
+    .page-data-metadata {
+      display: flex;
+      align-items: flex-start;
+      .name {
+        height: px2rem(48px);
+        line-height: px2rem(48px);
+      }
+    }
+    .page-data-file {
+      display: flex;
+      align-items: flex-start;
+      .name {
+        min-width: px2rem(150px);
+        height: px2rem(48px);
+        line-height: px2rem(48px);
+        font-size: px2rem(20px);
+        font-weight: 500;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #000000;
+      }
+      .file-page {
+        width: px2rem(400px);
+        height: px2rem(182px);
+        padding: px2rem(20px);
+        border-radius: px2rem(8px);
+        background: #f8fafc;
+        cursor: pointer;
+        img {
+          display: block;
+          width: px2rem(310px);
+          height: px2rem(142px);
+        }
+      }
+    }
+    .btn {
+      margin-top: px2rem(50px);
+      margin-bottom: px2rem(50px);
+      margin-left: px2rem(150px);
+      width: px2rem(997px);
+      height: px2rem(48px);
+      border-radius: px2rem(8px);
+      background: #9700e9;
+      font-size: px2rem(16px);
+      font-weight: 500;
+      line-height: px2rem(48px);
+      letter-spacing: 0em;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+    }
+    select {
+      width: px2rem(1158px);
+      height: px2rem(48px);
+      padding: 0 px2rem(16px);
+      border-radius: px2rem(8px);
+      border: 1px solid #e5e7eb;
+      font-size: px2rem(16px);
+      option {
+        display: block;
+        height: px2rem(62px) !important;
+        line-height: px2rem(62px) !important;
+      }
+    }
+  }
+}

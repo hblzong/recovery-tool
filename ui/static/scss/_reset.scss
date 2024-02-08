@@ -1,0 +1,188 @@
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Microsoft YaHei", arial, SimSun, sans-serif, tahoma;
+}
+
+body {
+  font-size: 14px;
+  color: #666;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+input,
+select,
+textarea {
+  font-size: 100%;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  outline: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+textarea,
+input,
+button,
+a {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+address,
+cite,
+code,
+dfn,
+em,
+i,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+a {
+  text-decoration: none;
+}
+
+input::-webkit-input-placeholder {
+  color: #999;
+}
+input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #999;
+}
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #999;
+}
+input:-ms-input-placeholder {
+  color: #999;
+}
+
+// html {
+//   font-size: 100px;
+// }
+// @media(max-width: 1912px) {
+//   html {
+//     font-size: 99.5833px;
+//   }
+// }
+// @media(max-width: 1910px) {
+//   html {
+//     font-size: 99.1146px;
+//   }
+// }
+// @media(max-width: 1680px) {
+//   html {
+//     font-size: 87.5px;
+//   }
+// }
+// @media(max-width: 1480px) {
+//   html {
+//     font-size: 77.0833px;
+//   }
+// }
+// @media(max-width: 1472px) {
+//   html {
+//     font-size: 76.6667px;
+//   }
+// }
+// @media(max-width: 1280px) {
+//   html {
+//     font-size: 66.6667px;
+//   }
+// }
+// @media(max-width: 1272px) {
+//   html {
+//     font-size: 66.25px;
+//   }
+// }
+// @media(max-width: 1024px) {
+//   html {
+//     font-size: 53.3333px;
+//   }
+// }
+// @media(max-width: 1016px) {
+//   html {
+//     font-size: 52.9167px;
+//   }
+// }
+// @media(max-width: 768px) {
+//   html {
+//     font-size: 40px;
+//   }
+// }
+// @media(max-width: 425px) {
+//   html {
+//     font-size: 22.1354px;
+//   }
+// }
+// @media(max-width: 414px) {
+//   html {
+//     font-size: 21.5625px;
+//   }
+// }
+// @media(max-width: 375px) {
+//   html {
+//     font-size: 19.5313px;
+//   }
+// }

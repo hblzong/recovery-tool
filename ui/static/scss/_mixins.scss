@@ -1,0 +1,11 @@
+@charset "utf-8";
+@function px2rem($px){
+  @return $px / 100px + rem
+}
+
+// 溢出显示省略号
+@mixin ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

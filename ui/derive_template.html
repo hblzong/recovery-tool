@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0,minimal-ui"
+    />
+    <title>HyperBC Vault Key Derivation Tool</title>
+    <link rel="stylesheet" href="./static/css/common.css" />
+  </head>
+  <script src="wasm_exec.js"></script>
+  <script>
+    var base64String = "AAAAAAAAA";
+
+    // 在页面加载完毕后执行
+    window.onload = function () {
+      const go = new Go(); // wasm_exec.js 中的定义
+      const wasmBinary = Uint8Array.from(atob(base64String), c =>
+        c.charCodeAt(0)
+      );
+      WebAssembly.instantiate(wasmBinary, go.importObject).then(res => {
+        go.run(res.instance); // 执行 go main 方法
+      });
+    };
+
+    let fileContentStr = "";
+    function importFile() {
+      // const fileInput = document.createElement('input');
+      // fileInput.type = 'file';
+      const fileInput = document.getElementById("importFile")
+      fileInput.onchange = () => {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+          const fileBuffer = reader.result;
+          // 将文件内容作为参数传递给WebAssembly函数
+          const decoder = new TextDecoder('utf-8');
+          fileContentStr = decoder.decode(fileBuffer);
+          console.log(fileContentStr);
+        };
+        reader.readAsArrayBuffer(file);
+      };
+
+      // fileInput.click(); // 触发文件选择
+    }
+
+    var resultList = [];
+    function calculate() {
+      const metadata = document.getElementById("metadataVal").value;
+      const walletType = parseInt(document.getElementById("walletType").value);
+      const vaultIndex = parseInt(document.getElementById("vaultIndex").value);
+      const chainInt = parseInt(document.getElementById("chainVal").value);
+      const subIndex = parseInt(document.getElementById("subIndex").value);
+      if (inputType == "file_input") {
+        const result = window.generateChildExtendedPrivateKeyFromFile(
+                metadata,
+                walletType,
+                fileContentStr
+        );
+        console.log(result);
+        resultList = result
+      } else {
+        const result = window.generateChildExtendedPrivateKey(
+                metadata,
+                walletType,
+                vaultIndex,
+                chainInt,
+                subIndex
+        );
+        console.log(result);
+        resultList = result
+      }
+
+      // document.getElementById("output").innerText = result;
+      return new Promise(() => {});
+    }
+  </script>
+
+  <body>
+    <div class="home">
+      <!-- 标题 -->
+      <div class="title" data-locale="title">
+        HyperBC Vault Key Derivation Tool
+      </div>
+      <!-- 语言切换 -->
+      <div class="lang">
+        <div class="box">
+          <img class="img1" src="./static/images/ic_yuyan.png" alt="" />
+          <span id="lang-type">English</span>
+          <img class="img2" src="./static/images/Group 201.png" alt="" />
+        </div>
+        <div class="lang-dropdown">
+          <div class="list">
+            <div class="li chinese">简体中文</div>
+            <div class="li english active">English</div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <!-- Derivation Inputs -->
+        <div class="derivation" data-locale="Derivation Inputs">
+          Derivation Inputs
+        </div>
+        <!-- Within Input -->
+        <!--<div class="item">
+          <div class="name" data-locale="Within-Input">Within Input</div>
+          <div class="info">
+            &lt;!&ndash; 添加active类 使其选择样式 &ndash;&gt;
+            <div data-locale="Manual-Input" class="tx active"  id="Manual_Input">
+              Manual Input
+            </div>
+            <div class="tx" data-locale="File-Import" id="File_Import">
+              File Import
+            </div>
+          </div>
+        </div>-->
+        <!-- Metadata -->
+        <div class="item page-data-metadata" id="Metadata">
+          <div class="name" data-locale="Metadata">Metadata</div>
+          <textarea
+            type="text"
+            class="metadata"
+            id="metadataVal"
+            placeholder=""
+          ></textarea>
+        </div>
+        <!-- Wallet Type -->
+        <div class="item" id="Wallet_Type">
+          <div class="name" data-locale="Wallet-Type">Wallet Type</div>
+          <select id="walletType">
+            <option value="0" data-locale="Asset-Wallet">Asset Wallet</option>
+          </select>
+        </div>
+        <!-- Vault Index -->
+        <div class="item" id="Vault_Index">
+          <div class="name" data-locale="Vault-Index">Vault Index</div>
+          <input
+            id="vaultIndex"
+            type="text"
+            value="0"
+            min="0"
+            onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''"
+          />
+        </div>
+        <!-- Chain -->
+        <div class="item" id="Chain">
+          <div class="name" data-locale="Chain">Chain</div>
+          <select name="chain" id="chainVal">
+            <option value="0">BTC</option>
+            <option value="2">LTC</option>
+            <option value="3">DOGE</option>
+            <option value="60">ETH</option>
+            <option value="145">BCH</option>
+            <option value="195">TRX</option>
+            <option value="60">HECO</option>
+            <option value="60">BSC</option>
+          </select>
+        </div>
+        <!-- Sub Index -->
+        <div class="item" id="Sub_Index">
+          <div class="name" data-locale="Sub-Index">Sub Index</div>
+          <input
+            id="subIndex"
+            type="text"
+            value="0"
+            min="0"
+            onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''"
+          />
+        </div>
+        <!-- Import File -->
+<!--        <div class="item page-data-file" id="ImportFile1">-->
+<!--          <div class="name">Import File</div>-->
+          <!-- 容器 上传文件须在这个里面-->
+<!--          <div class="file-page" onclick="importFile()">-->
+<!--          <div onclick="importFile()">-->
+<!--            <input id="importFile" type="file"/>-->
+<!--            <img src="./static/images/_drag-n-drop-file-upload.png" alt="" />-->
+<!--          </div>-->
+<!--        </div>-->
+        <!-- Generate Child Extended Private Key -->
+        <div
+          class="btn"
+          onclick="calculate()"
+          data-locale="Generate Child Extended Private Key"
+          id="submit"
+        >
+          Generate Child Extended Private Key
+        </div>
+
+        <div id="container">
+
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./static/js/jquery-1.8.3.min.js"></script>
+  <script src="./static/js/adapter.js"></script>
+  <script>
+    $(function () {
+      //切换语言
+      $(".lang").on("mouseenter", function () {
+        $(".lang-dropdown").show();
+      });
+      $(".lang").on("mouseleave", function () {
+        $(".lang-dropdown").hide();
+      });
+
+      $(".lang-dropdown .list .li").on("click", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#lang-type").text($(this).text());
+      });
+      //切换按钮
+      $(".info .tx").on("click", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+    });
+
+    // 假设您有一个对象来存储不同语言的翻译
+    var translations = {
+      English: {
+        title: "HyperBC Vault Key Derivation Tool",
+        "Derivation Inputs": "Derivation Inputs",
+        "Wallet-Type": "Wallet Type",
+        "Vault-Index": "Vault Index",
+        "Sub-Index": "Sub Index",
+        Chain: "Chain",
+        "File-Path": "File Path",
+        "Generate Child Extended Private Key":
+          "Generate Child Extended Private Key",
+        "Within-Input": "Within Input",
+        "Manual-Input": "Manual Import",
+        "File-Import": "File Import",
+        Metadata: "Metadata",
+        "Child Extended Private Key": "Child Extended Private Key",
+        Address: "Address",
+        "Asset-Wallet": "Asset Wallet"
+        // 其他翻译...
+      },
+      简体中文: {
+        title: "HyperBC金库密钥派生工具",
+        "Derivation Inputs": "推导输入",
+        "Wallet-Type": "钱包类型",
+        "Vault-Index": "金库序号",
+        "Sub-Index": "地址序号",
+        Chain: "链",
+        "File-Path": "文件路径",
+        "Generate Child Extended Private Key": "生成子扩展私钥",
+        "Within-Input": "输入方式",
+        "Manual-Input": "手动输入",
+        "File-Import": "文件导入",
+        Metadata: "元数据",
+        "Child Extended Private Key": "子扩展私钥",
+        Address: "地址",
+        "Asset-Wallet": "资管钱包"
+        // 其他翻译...
+      }
+    };
+
+    $(function () {
+      //先取本地存储语言 默认是English
+      var lang = window.localStorage.getItem("lang") || "English";
+      updateTexts(lang);
+
+      if (lang == "English") {
+        $("#lang-type").text(lang);
+        $(".english").addClass("active").siblings().removeClass("active");
+      } else {
+        $("#lang-type").text(lang);
+        $(".chinese").addClass("active").siblings().removeClass("active");
+      }
+
+      // 切换语言的事件处理
+      $(".lang-dropdown .list .li").on("click", function () {
+        var selectedLang = $(this).text(); // 获取选中的语言
+        window.localStorage.setItem("lang", selectedLang);
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#lang-type").text(selectedLang);
+
+        // 更新页面上的文本内容
+        updateTexts(selectedLang);
+      });
+
+      // 更新文本的函数
+      function updateTexts(language) {
+        $("[data-locale]").each(function () {
+          var key = $(this).data("locale"); // 获取data-locale的值
+          $(this).text(translations[language][key]); // 设置对应语言的翻译
+        });
+      }
+    });
+  </script>
+  <script>
+    var inputType = "manual_input"
+    if ($("#Manual_Input").hasClass("active")) {
+      $("#File_Path").hide();
+      $("#ImportFile1").hide();
+    }
+    $("#Manual_Input").on("click", function () {
+      $("#File_Path").hide();
+      $("#ImportFile1").hide();
+      $("#Vault_Index").show();
+      $("#Chain").show();
+      $("#Sub_Index").show();
+      $("#container").hide(); //隐藏
+      inputType = "manual_input"
+    });
+    $("#File_Import").on("click", function () {
+      $("#File_Path").show();
+      $("#ImportFile1").show();
+      $("#Vault_Index").hide();
+      $("#Chain").hide();
+      $("#Sub_Index").hide();
+      $("#container").hide(); //隐藏
+      inputType = "file_input"
+    });
+
+    $("#submit").on("click", function () {
+      $("#container").empty(); // 清空container中的内容
+      $("#container").show(); //显示
+
+      if (!isValidJson(resultList)) {
+        appendErr(resultList)
+        return
+      }
+      const objectsArray = JSON.parse(resultList);
+      $.each(objectsArray, function (index, item) {
+        // 创建新元素并追加到指定容器中
+        var newElement = $(
+          '<div class="item">' +
+            '<div class="name" data-locale="Child Extended Private Key">Child Extended Private Key</div>' +
+            '<input class="grey" type="text" value="' +
+            item.private_key +
+            '"/>' +
+            "</div>" +
+            '<div class="item">' +
+            '<div class="name" data-locale="Address">Address</div>' +
+            '<input class="grey" type="text" value="' +
+            item.address +
+            '"/>' +
+            "</div>"
+        );
+        $("#container").append(newElement);
+      });
+    });
+
+    function appendErr(msg) {
+      var newElement = $(
+              '<div class="item">' +
+              '<div class="name">Derivation Error</div>' +
+              '<input class="grey" type="text" value="' + msg + '"/>' +
+              "</div>"
+      );
+      $("#container").append(newElement);
+    }
+
+    function isValidJson(str) {
+      try {
+        JSON.parse(str);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+  </script>
+</html>

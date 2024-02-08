@@ -1,0 +1,100 @@
+.payment_Method{
+    font-family: PingFangSC-Regular, PingFang SC;
+    background: #fff;
+    padding-top: px2rem(88px);
+    padding-bottom: px2rem(136px);
+    header{
+        width: 100%;
+        z-index: 2;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        height: px2rem(88px);
+        padding: px2rem(16px) px2rem(24px);
+        img{
+          position: absolute;
+          height: px2rem(44px);
+          width: px2rem(44px);
+          top: 50%;
+          left: px2rem(32px);
+          transform: translateY(-50%);
+        }
+    }
+    .amount{
+        padding: px2rem(20px) px2rem(32px) 0 px2rem(32px);
+        .title{
+            font-size: px2rem(56px);
+            font-weight: 500;
+            color: #333333;
+            line-height: px2rem(56px);
+        }
+        .quantity{
+            margin-top: px2rem(60px);
+            font-size: px2rem(64px);
+            font-weight: 600;
+            color: #FF6F20;
+            line-height: px2rem(64px);
+        }
+        .exchange{
+            margin-top: px2rem(16px);
+            font-size: px2rem(28px);
+            font-weight: 400;
+            color: #999999;
+            line-height: px2rem(36px);
+        }
+    }
+    .list{
+        padding: px2rem(102px) px2rem(32px) px2rem(60px) px2rem(32px) ;
+        .title{
+            font-size: px2rem(32px);
+            font-weight: 500;
+            color: #333333;
+            line-height: px2rem(32px);
+        }
+        .item{
+            margin-top: px2rem(32px);
+            width: 100%;
+            height: px2rem(110px);
+            box-shadow: 0px px2rem(6px) px2rem(16px) 0px rgba(0, 0, 0, 0.08);
+            border-radius: px2rem(16px);
+            border: 1px solid #C9C9C9;
+            padding: px2rem(25px) px2rem(16px) px2rem(25px) px2rem(24px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            .iocnImg{
+                width: px2rem(60px);
+                height: px2rem(60px);
+            }
+            span{
+                display: block;
+                font-size: px2rem(32px);
+                font-weight: 500;
+                color: #191919;
+                line-height: px2rem(32px);
+                margin-left: px2rem(16px);
+            }
+            .arrow{
+                width: px2rem(40px);
+                height: px2rem(40px);
+                position: absolute;
+                top: 50%;
+                right: px2rem(16px);
+                transform: translateY(-50%);
+            }
+        }
+    }
+    .back{
+        margin: 0 auto;
+        width: px2rem(686px);
+        height: px2rem(88px);
+        border-radius: px2rem(16px);
+        border: 1px solid #C9C9C9;
+        font-size: px2rem(32px);
+        font-weight: 400;
+        color: #666666;
+        line-height: px2rem(88px);
+        text-align: center;
+    }
+}
